@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ndzy-app/static/css/main.258477f1.css",
-    "main.js": "/ndzy-app/static/js/main.ae402c33.js",
+    "main.js": "/ndzy-app/static/js/main.17dfc973.js",
     "static/js/7680.c940099a.chunk.js": "/ndzy-app/static/js/7680.c940099a.chunk.js",
     "static/js/6415.fd2dd608.chunk.js": "/ndzy-app/static/js/6415.fd2dd608.chunk.js",
     "static/js/4669.9687165e.chunk.js": "/ndzy-app/static/js/4669.9687165e.chunk.js",
@@ -116,7 +116,7 @@
     "static/js/6453.bd5c6dd9.chunk.js": "/ndzy-app/static/js/6453.bd5c6dd9.chunk.js",
     "index.html": "/ndzy-app/index.html",
     "main.258477f1.css.map": "/ndzy-app/static/css/main.258477f1.css.map",
-    "main.ae402c33.js.map": "/ndzy-app/static/js/main.ae402c33.js.map",
+    "main.17dfc973.js.map": "/ndzy-app/static/js/main.17dfc973.js.map",
     "7680.c940099a.chunk.js.map": "/ndzy-app/static/js/7680.c940099a.chunk.js.map",
     "6415.fd2dd608.chunk.js.map": "/ndzy-app/static/js/6415.fd2dd608.chunk.js.map",
     "4669.9687165e.chunk.js.map": "/ndzy-app/static/js/4669.9687165e.chunk.js.map",
@@ -232,6 +232,6 @@
   },
   "entrypoints": [
     "static/css/main.258477f1.css",
-    "static/js/main.ae402c33.js"
+    "static/js/main.17dfc973.js"
   ]
 }
