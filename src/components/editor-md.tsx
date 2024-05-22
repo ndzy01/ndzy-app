@@ -50,7 +50,7 @@ export const EditorMd = ({ value, onChange, type = 'edit' }: any) => {
         <>
           <MdCatalog
             className="hidden md:block"
-            style={{ position: 'fixed', right: 24, top: '8rem', zIndex: '9999' }}
+            style={{ position: 'fixed', right: 24, top: '11rem', zIndex: '9999' }}
             editorId={id}
             scrollElement={scrollElement}
           />
