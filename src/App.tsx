@@ -79,6 +79,7 @@ function App() {
               {!state.show.login && !state.show.add && !state.show.edit && (
                 <>
                   <ArticleTree
+                    placeholder="请选择文章"
                     data={state.articles}
                     onChange={(v) =>
                       dispatch({
@@ -90,7 +91,8 @@ function App() {
                       })
                     }
                   />
-                  <EditorMd type="view" value={state.article?.content} />
+
+                  {state.article?.content && <EditorMd type="view" value={state.article?.content} />}
                 </>
               )}
             </main>

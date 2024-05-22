@@ -10,10 +10,10 @@ const ArticleTree = ({
   onChange,
   placeholder,
 }: {
+  placeholder: string;
   data: any[];
   value?: string[];
   onChange?: (v: string[]) => void;
-  placeholder?: string;
 }) => {
   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
   const [s, setS] = useState('');
@@ -35,9 +35,7 @@ const ArticleTree = ({
     <Accordion type="single" collapsible className="w-full" value={s} onValueChange={(value) => setS(value)}>
       <AccordionItem value="key1">
         <AccordionTrigger>
-          {innerValue.length > 0
-            ? findNodeById(data, innerValue[0])?.title || placeholder || '文章'
-            : placeholder || '文章'}
+          {innerValue.length > 0 ? findNodeById(data, innerValue[0])?.title || placeholder : placeholder}
         </AccordionTrigger>
         <AccordionContent>
           <RCTree
