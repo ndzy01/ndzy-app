@@ -20,15 +20,6 @@ const AddArticle = ({ create, data, dispatch }: any) => {
           <Form
             initialValues={{ title: '', content: '', order: '' }}
             onSubmit={(v) => {
-              if (!v.parentId) {
-                enqueueSnackbar('请选择父级目录', {
-                  variant: 'error',
-                  anchorOrigin: { vertical: 'top', horizontal: 'center' },
-                });
-
-                return;
-              }
-
               if (!v.content) {
                 enqueueSnackbar('内容不能为空', {
                   variant: 'error',
@@ -38,7 +29,14 @@ const AddArticle = ({ create, data, dispatch }: any) => {
                 return;
               }
 
-              create({ ...v, parentId: v.parentId[0], order: Number(v.order) }, dispatch);
+              create(
+                {
+                  ...v,
+                  parentId: v.parentId && v.parentId.length > 0 ? v.parentId[0] : undefined,
+                  order: Number(v.order),
+                },
+                dispatch,
+              );
 
               dispatch({
                 type: 'UPDATE',
