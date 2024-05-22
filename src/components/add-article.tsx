@@ -18,7 +18,7 @@ const AddArticle = ({ create, data, dispatch }: any) => {
       <div className="w-full h-[90vh]">
         <div className="space-y-6">
           <Form
-            initialValues={{ title: '', content: '', order: 0 }}
+            initialValues={{ title: '', content: '', order: '' }}
             onSubmit={(v) => {
               if (!v.parentId) {
                 enqueueSnackbar('请选择父级目录', {

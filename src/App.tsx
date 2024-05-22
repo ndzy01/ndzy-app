@@ -24,13 +24,29 @@ function App() {
           <div className="flex flex-col w-hull h-full">
             <header className="fixed top-0 z-[9999] w-full flex h-16 items-center gap-4 border-b bg-transparent px-4">
               <Button
+                variant={!state.show.article ? 'outline' : 'default'}
+                disabled={state.loading}
+                onClick={() => {
+                  dispatch({
+                    type: 'UPDATE',
+                    payload: {
+                      show: { article: !state.show.article, add: false, edit: false, login: false },
+                      article: {},
+                    },
+                  });
+                }}
+              >
+                文章
+              </Button>
+
+              <Button
                 variant={!state.show.login ? 'outline' : 'default'}
                 disabled={state.loading}
                 onClick={() => {
                   dispatch({
                     type: 'UPDATE',
                     payload: {
-                      show: { ...state.show, login: !state.show.login, add: false, edit: false },
+                      show: { login: !state.show.login, add: false, edit: false, article: false },
                       article: {},
                     },
                   });
@@ -44,7 +60,10 @@ function App() {
                 onClick={() => {
                   dispatch({
                     type: 'UPDATE',
-                    payload: { article: {}, show: { ...state.show, add: !state.show.add, edit: false, login: false } },
+                    payload: {
+                      article: {},
+                      show: { add: !state.show.add, edit: false, login: false, article: false },
+                    },
                   });
                 }}
               >
@@ -56,7 +75,9 @@ function App() {
                 onClick={() => {
                   dispatch({
                     type: 'UPDATE',
-                    payload: { show: { ...state.show, edit: !state.show.edit, add: false, login: false } },
+                    payload: {
+                      show: { edit: !state.show.edit, add: false, login: false, article: false },
+                    },
                   });
                 }}
               >
@@ -79,7 +100,7 @@ function App() {
 
               {state.show.edit && <EditArticle {...state.article} save={save} dispatch={dispatch} />}
 
-              {!state.show.login && !state.show.add && !state.show.edit && (
+              {state.show.article && (
                 <>
                   <ArticleTree
                     placeholder="请选择文章"

@@ -4,7 +4,7 @@ interface State {
   loading: boolean;
   articles: any[];
   article: Record<string, any>;
-  show: { login: boolean; add: boolean; edit: boolean };
+  show: { login: boolean; add: boolean; edit: boolean; article: boolean };
 }
 
 interface Action {
@@ -21,7 +21,7 @@ export const initialState: State = {
   loading: false,
   article: {},
   articles: [],
-  show: { login: false, add: false, edit: false },
+  show: { login: false, add: false, edit: false, article: true },
 };
 
 export const reducer = (state: State, action: Action): State => {
