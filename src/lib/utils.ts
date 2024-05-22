@@ -32,7 +32,7 @@ export const createAxiosInstance = (url: string) => {
       const token = localStorage.getItem('token');
 
       if (token) {
-        config.headers = { Authorization: 'Basic' + ' ' + token } as AxiosRequestHeaders;
+        config.headers = { Authorization: `Basic ${token}` } as AxiosRequestHeaders;
       }
 
       return config;

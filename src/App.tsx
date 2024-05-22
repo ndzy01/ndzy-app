@@ -24,10 +24,13 @@ function App() {
           <div className="flex flex-col w-hull h-full">
             <header className="fixed top-0 z-[9999] w-full flex h-16 items-center gap-4 border-b bg-transparent px-4">
               <Button
-                variant={!state.show.add ? 'outline' : 'default'}
+                variant={!state.show.login ? 'outline' : 'default'}
                 disabled={state.loading}
                 onClick={() => {
-                  dispatch({ type: 'UPDATE', payload: { show: { ...state.show, login: !state.show.login } } });
+                  dispatch({
+                    type: 'UPDATE',
+                    payload: { show: { ...state.show, login: !state.show.login }, article: {} },
+                  });
                 }}
               >
                 登录
@@ -36,18 +39,21 @@ function App() {
                 variant={!state.show.add ? 'outline' : 'default'}
                 disabled={state.loading}
                 onClick={() => {
-                  dispatch({ type: 'UPDATE', payload: { show: { ...state.show, add: !state.show.add, edit: false } } });
+                  dispatch({
+                    type: 'UPDATE',
+                    payload: { article: {}, show: { ...state.show, add: !state.show.add, edit: false } },
+                  });
                 }}
               >
                 新增
               </Button>
               <Button
-                variant={!state.show.add ? 'outline' : 'default'}
+                variant={!state.show.edit ? 'outline' : 'default'}
                 disabled={!state.article?.id || state.loading}
                 onClick={() => {
                   dispatch({
                     type: 'UPDATE',
-                    payload: { show: { ...state.show, edit: !state.show.edit, add: false } },
+                    payload: { article: {}, show: { ...state.show, edit: !state.show.edit, add: false } },
                   });
                 }}
               >

@@ -6,7 +6,7 @@ import { ReduxContext } from './store';
 import { Form, FormItem } from './components/form';
 import { service } from './lib/utils';
 
-export default () => {
+const Login = () => {
   const { state, dispatch } = useContext(ReduxContext);
   return (
     <div className="w-full h0full flex items-center justify-center">
@@ -43,3 +43,5 @@ export default () => {
     </div>
   );
 };
+
+export default Login;
