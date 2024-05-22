@@ -10,7 +10,7 @@ const EditArticle = ({ order, title, content, id, save, dispatch }: any) => {
   const { state } = useContext(ReduxContext);
 
   return (
-    <div className="relative w-full flex min-h-full px-8">
+    <div className="relative w-full flex min-h-full p-8">
       <div className="w-full h-[90vh]">
         <div className="space-y-6">
           <Form

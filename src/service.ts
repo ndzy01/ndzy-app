@@ -24,7 +24,7 @@ export const save = async (id: string, params: any, dispatch: any) => {
   await service({ url: `/article/${id}`, method: 'PATCH', data: params });
   const data = await service({ url: `/article/${id}`, method: 'GET' });
 
-  dispatch({ type: 'UPDATE', payload: { loading: false, article: data.data || {} } });
+  dispatch({ type: 'UPDATE', payload: { loading: false, article: {} } });
 
   query(dispatch);
 };

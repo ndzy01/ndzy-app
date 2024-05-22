@@ -29,7 +29,10 @@ function App() {
                 onClick={() => {
                   dispatch({
                     type: 'UPDATE',
-                    payload: { show: { ...state.show, login: !state.show.login }, article: {} },
+                    payload: {
+                      show: { ...state.show, login: !state.show.login, add: false, edit: false },
+                      article: {},
+                    },
                   });
                 }}
               >
@@ -41,7 +44,7 @@ function App() {
                 onClick={() => {
                   dispatch({
                     type: 'UPDATE',
-                    payload: { article: {}, show: { ...state.show, add: !state.show.add, edit: false } },
+                    payload: { article: {}, show: { ...state.show, add: !state.show.add, edit: false, login: false } },
                   });
                 }}
               >
@@ -53,7 +56,7 @@ function App() {
                 onClick={() => {
                   dispatch({
                     type: 'UPDATE',
-                    payload: { article: {}, show: { ...state.show, edit: !state.show.edit, add: false } },
+                    payload: { show: { ...state.show, edit: !state.show.edit, add: false, login: false } },
                   });
                 }}
               >

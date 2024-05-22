@@ -14,7 +14,7 @@ const AddArticle = ({ create, data, dispatch }: any) => {
   };
 
   return (
-    <div className="relative w-full flex min-h-full px-8">
+    <div className="relative w-full flex min-h-full p-8">
       <div className="w-full h-[90vh]">
         <div className="space-y-6">
           <Form
