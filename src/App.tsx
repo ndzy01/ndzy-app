@@ -24,7 +24,8 @@ function App() {
           <div className="flex flex-col w-hull h-full">
             <header className="fixed top-0 z-[9999] w-full flex h-16 items-center gap-4 border-b bg-transparent px-4">
               <Button
-                variant="outline"
+                variant={!state.show.add ? 'outline' : 'default'}
+                disabled={state.loading}
                 onClick={() => {
                   dispatch({ type: 'UPDATE', payload: { show: { ...state.show, login: !state.show.login } } });
                 }}
@@ -32,7 +33,8 @@ function App() {
                 登录
               </Button>
               <Button
-                variant="outline"
+                variant={!state.show.add ? 'outline' : 'default'}
+                disabled={state.loading}
                 onClick={() => {
                   dispatch({ type: 'UPDATE', payload: { show: { ...state.show, add: !state.show.add, edit: false } } });
                 }}
@@ -40,8 +42,8 @@ function App() {
                 新增
               </Button>
               <Button
-                variant="outline"
-                disabled={!state.article?.id}
+                variant={!state.show.add ? 'outline' : 'default'}
+                disabled={!state.article?.id || state.loading}
                 onClick={() => {
                   dispatch({
                     type: 'UPDATE',
@@ -53,7 +55,7 @@ function App() {
               </Button>
               <Button
                 variant="outline"
-                disabled={!state.article?.id}
+                disabled={!state.article?.id || state.loading}
                 onClick={() => {
                   del(state.article.id, dispatch);
                 }}
