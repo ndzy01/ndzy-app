@@ -3,20 +3,25 @@ import RCTree from 'rc-tree';
 import 'rc-tree/assets/index.css';
 import { findNodeById, loop } from '../lib/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
+import { Button } from './ui/button';
 
 const ArticleTree = ({
   data,
   value,
   onChange,
   placeholder,
+  onEdit,
+  onDel,
 }: {
   placeholder: string;
   data: any[];
   value?: string[];
   onChange?: (v: string[]) => void;
+  onEdit?: any;
+  onDel?: any;
 }) => {
   const [expandedKeys, setExpandedKeys] = useState<React.Key[]>([]);
-  const [s, setS] = useState('');
+  const [s, setS] = useState('key1');
   const [innerValue, setInnerValue] = useState(value || []);
   const [autoExpandParent, setAutoExpandParent] = useState(true);
 
@@ -35,10 +40,43 @@ const ArticleTree = ({
     <Accordion type="single" collapsible className="w-full" value={s} onValueChange={(value) => setS(value)}>
       <AccordionItem value="key1">
         <AccordionTrigger>
-          {innerValue.length > 0 ? findNodeById(data, innerValue[0])?.title || placeholder : placeholder}
+          {innerValue.length > 0 ? (
+            findNodeById(data, innerValue[0]) ? (
+              <div className="flex items-center gap-4">
+                {findNodeById(data, innerValue[0])?.title}
+                {onEdit && (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      onEdit();
+                    }}
+                  >
+                    编辑
+                  </Button>
+                )}
+
+                {onDel && (
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      onDel(findNodeById(data, innerValue[0]).id);
+                    }}
+                  >
+                    删除
+                  </Button>
+                )}
+              </div>
+            ) : (
+              placeholder
+            )
+          ) : (
+            placeholder
+          )}
         </AccordionTrigger>
         <AccordionContent>
           <RCTree
+            virtual
+            height={800}
             showLine
             onExpand={onExpand}
             expandedKeys={expandedKeys}

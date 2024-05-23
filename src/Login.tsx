@@ -21,7 +21,10 @@ const Login = () => {
               service({ url: '/user/login', method: 'POST', data: v }).then((res) => {
                 if (res && res?.data?.token) {
                   localStorage.setItem('token', res?.data?.token);
-                  dispatch({ type: 'UPDATE', payload: { show: { ...state.show, login: false } } });
+                  dispatch({
+                    type: 'UPDATE',
+                    payload: { show: { login: false, article: true, add: false, edit: false } },
+                  });
                 }
               });
             }}

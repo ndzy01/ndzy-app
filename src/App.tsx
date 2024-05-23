@@ -30,7 +30,7 @@ function App() {
                   dispatch({
                     type: 'UPDATE',
                     payload: {
-                      show: { article: !state.show.article, add: false, edit: false, login: false },
+                      show: { login: false, article: true, add: false, edit: false },
                       article: {},
                     },
                   });
@@ -46,7 +46,7 @@ function App() {
                   dispatch({
                     type: 'UPDATE',
                     payload: {
-                      show: { login: !state.show.login, add: false, edit: false, article: false },
+                      show: { login: true, article: false, add: false, edit: false },
                       article: {},
                     },
                   });
@@ -62,35 +62,12 @@ function App() {
                     type: 'UPDATE',
                     payload: {
                       article: {},
-                      show: { add: !state.show.add, edit: false, login: false, article: false },
+                      show: { login: false, article: false, add: true, edit: false },
                     },
                   });
                 }}
               >
                 新增
-              </Button>
-              <Button
-                variant={!state.show.edit ? 'outline' : 'default'}
-                disabled={!state.article?.id || state.loading}
-                onClick={() => {
-                  dispatch({
-                    type: 'UPDATE',
-                    payload: {
-                      show: { edit: !state.show.edit, add: false, login: false, article: false },
-                    },
-                  });
-                }}
-              >
-                编辑
-              </Button>
-              <Button
-                variant="outline"
-                disabled={!state.article?.id || state.loading}
-                onClick={() => {
-                  del(state.article.id, dispatch);
-                }}
-              >
-                删除
               </Button>
             </header>
             <main className="mt-16 p-4">
@@ -129,10 +106,21 @@ function App() {
                         type: 'UPDATE',
                         payload: {
                           article: findNodeById(state.articles, v[0]),
-                          show: { ...state.show, edit: false, add: false },
+                          show: { login: false, article: true, add: false, edit: false },
                         },
                       })
                     }
+                    onEdit={() => {
+                      dispatch({
+                        type: 'UPDATE',
+                        payload: {
+                          show: { login: false, article: false, add: false, edit: true },
+                        },
+                      });
+                    }}
+                    onDel={(id: string) => {
+                      del(id, dispatch);
+                    }}
                   />
 
                   {state.article?.content && <EditorMd type="view" value={state.article?.content} />}

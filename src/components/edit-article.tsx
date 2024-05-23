@@ -29,7 +29,7 @@ const EditArticle = ({ order, title, content, id, save, dispatch }: any) => {
 
               dispatch({
                 type: 'UPDATE',
-                payload: { show: { ...state.show, edit: false } },
+                payload: { show: { login: false, article: true, add: false, edit: false } },
               });
             }}
           >

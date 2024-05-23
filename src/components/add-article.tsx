@@ -40,7 +40,7 @@ const AddArticle = ({ create, data, dispatch }: any) => {
 
               dispatch({
                 type: 'UPDATE',
-                payload: { show: { ...state.show, add: false } },
+                payload: { show: { login: false, article: true, add: false, edit: false } },
               });
             }}
           >
