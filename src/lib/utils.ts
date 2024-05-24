@@ -110,3 +110,24 @@ export const findNodeById: any = (tree: any[], id: string) => {
 
   return null; // 如果没找到，返回null
 };
+
+// 递归函数来搜索具有特定标题的节点，并返回路径
+export const findPath: any = (data: any[], targetId: string, path = []) => {
+  for (const item of data) {
+    // 当前路径加上当前节点
+    const newPath = [...path, item.title]; // 或者使用item.id根据需要
+    // 如果找到目标，返回路径
+    if (item.id === targetId) {
+      return newPath;
+    }
+    // 如果该节点有子节点，递归搜索子节点
+    if (item.children && item.children.length) {
+      const result = findPath(item.children, targetId, newPath);
+      if (result) {
+        return result; // 如果在子树中找到目标，返回路径
+      }
+    }
+  }
+  // 如果没有找到目标
+  return [];
+};

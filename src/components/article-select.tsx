@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import RCTree from 'rc-tree';
 import 'rc-tree/assets/index.css';
-import { findNodeById, loop } from '../lib/utils';
+import { findNodeById, findPath, loop } from '../lib/utils';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from './ui/accordion';
 import { Button } from './ui/button';
 
@@ -36,6 +36,8 @@ const ArticleTree = ({
     }
   }, [value]);
 
+  console.log('------ndzy------', data, '------ndzy------');
+
   return (
     <Accordion type="single" collapsible className="w-full" value={s} onValueChange={(value) => setS(value)}>
       <AccordionItem value="key1">
@@ -43,7 +45,8 @@ const ArticleTree = ({
           {innerValue.length > 0 ? (
             findNodeById(data, innerValue[0]) ? (
               <div className="flex items-center gap-4">
-                {findNodeById(data, innerValue[0])?.title}
+                {findPath(data, innerValue[0]).join(' / ')}
+                {/* {findNodeById(data, innerValue[0])?.title} */}
                 {onEdit && (
                   <Button
                     variant="outline"
