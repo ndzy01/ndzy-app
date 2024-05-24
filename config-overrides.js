@@ -14,8 +14,6 @@ module.exports = override(
     ['@components']: path.resolve(__dirname, 'src/components'),
   }),
 
-  addBundleVisualizer(),
-
   setWebpackOptimizationSplitChunks({
     chunks: 'all',
     cacheGroups: {
@@ -51,7 +49,7 @@ module.exports = override(
 
   // 使用 CompressionPlugin 插件进行压缩
   addWebpackPlugin(
-    new BundleAnalyzerPlugin(),
+    // new BundleAnalyzerPlugin(),
     new CompressionPlugin({
       algorithm: 'gzip',
       test: /\.(js|css|html|svg)$/,
