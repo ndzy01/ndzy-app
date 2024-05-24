@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ndzy-app/static/css/main.450a1f3b.css",
-    "main.js": "/ndzy-app/static/js/main.f2bc0a2e.js",
+    "main.js": "/ndzy-app/static/js/main.6a6ca0e2.js",
     "static/js/3219.0ff51487.chunk.js": "/ndzy-app/static/js/3219.0ff51487.chunk.js",
     "static/js/1696.3a2699df.chunk.js": "/ndzy-app/static/js/1696.3a2699df.chunk.js",
     "static/js/2515.507e5b92.chunk.js": "/ndzy-app/static/js/2515.507e5b92.chunk.js",
@@ -134,6 +134,6 @@
     "static/css/chunk-vendors.6ff79842.css",
     "static/js/chunk-vendors.a95e5b13.js",
     "static/css/main.450a1f3b.css",
-    "static/js/main.f2bc0a2e.js"
+    "static/js/main.6a6ca0e2.js"
   ]
 }
