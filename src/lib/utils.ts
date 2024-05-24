@@ -123,7 +123,7 @@ export const findPath: any = (data: any[], targetId: string, path = []) => {
     // 如果该节点有子节点，递归搜索子节点
     if (item.children && item.children.length) {
       const result = findPath(item.children, targetId, newPath);
-      if (result) {
+      if (result.length > 0) {
         return result; // 如果在子树中找到目标，返回路径
       }
     }
