@@ -1,20 +1,20 @@
-import { createContext } from 'react';
+import { createContext } from "react"
 
 interface State {
-  loading: boolean;
-  articles: any[];
-  article: Record<string, any>;
-  show: { login: boolean; article: boolean; add: boolean; edit: boolean };
+  loading: boolean
+  articles: any[]
+  article: Record<string, any>
+  show: { login: boolean; article: boolean; add: boolean; edit: boolean }
 }
 
 interface Action {
-  type: 'UPDATE';
-  payload?: Partial<State>;
+  type: "UPDATE"
+  payload?: Partial<State>
 }
 
 interface ContextProps {
-  state: State;
-  dispatch: (action: Action) => void;
+  state: State
+  dispatch: (action: Action) => void
 }
 
 export const initialState: State = {
@@ -22,16 +22,19 @@ export const initialState: State = {
   article: {},
   articles: [],
   show: { login: false, add: false, article: true, edit: false },
-};
+}
 
 export const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case 'UPDATE':
-      return { ...state, ...(action.payload || {}) };
+    case "UPDATE":
+      return { ...state, ...(action.payload || {}) }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export const ReduxContext = createContext<ContextProps>({ state: initialState, dispatch: () => {} });
+export const ReduxContext = createContext<ContextProps>({
+  state: initialState,
+  dispatch: () => {},
+})

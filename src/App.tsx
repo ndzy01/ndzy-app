@@ -1,21 +1,34 @@
-import { useEffect, useReducer } from 'react';
-import { initialState, reducer, ReduxContext } from './store';
-import { create, del, query, save } from './service';
-import { SnackbarProvider } from 'notistack';
-import { Button } from './components/ui/button';
-import Login from './Login';
-import ArticleTree from './components/article-select';
-import EditArticle from './components/edit-article';
-import AddArticle from './components/add-article';
-import { findNodeById } from './lib/utils';
-import { EditorMd } from './components/editor-md';
+import { useEffect, useReducer } from "react"
+import { SnackbarProvider } from "notistack"
+
+import AddArticle from "./components/add-article"
+import ArticleTree from "./components/article-select"
+// import CursorTrail from "./components/cursor-trail"
+import EditArticle from "./components/edit-article"
+import { EditorMd } from "./components/editor-md"
+import { Button } from "./components/ui/button"
+import { findNodeById } from "./lib/utils"
+import Login from "./Login"
+import { create, del, query, save } from "./service"
+import { initialState, reducer, ReduxContext } from "./store"
+
+const setFontSize = () => {
+  var width = document.documentElement.clientWidth // 设置根元素字体大小。此时为宽的10等分 eg 设计稿是 600 600/16 = 37.5
+  if (width < 750) document.documentElement.style.fontSize = width / 37.5 + "px"
+}
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
-    query(dispatch);
-  }, []);
+    query(dispatch)
+  }, [])
+
+  // 设计稿尺寸问题处理
+  useEffect(() => {
+    setFontSize()
+    window.addEventListener("resize", setFontSize)
+  }, [])
 
   return (
     <ReduxContext.Provider value={{ state, dispatch }}>
@@ -24,47 +37,62 @@ function App() {
           <div className="flex flex-col w-hull h-full">
             <header className="fixed top-0 z-[9999] w-full flex h-16 items-center gap-4 border-b bg-transparent px-4">
               <Button
-                variant={!state.show.article ? 'outline' : 'default'}
+                variant={!state.show.article ? "outline" : "default"}
                 disabled={state.loading}
                 onClick={() => {
                   dispatch({
-                    type: 'UPDATE',
+                    type: "UPDATE",
                     payload: {
-                      show: { login: false, article: true, add: false, edit: false },
+                      show: {
+                        login: false,
+                        article: true,
+                        add: false,
+                        edit: false,
+                      },
                       article: {},
                     },
-                  });
+                  })
                 }}
               >
                 文章
               </Button>
 
               <Button
-                variant={!state.show.login ? 'outline' : 'default'}
+                variant={!state.show.login ? "outline" : "default"}
                 disabled={state.loading}
                 onClick={() => {
                   dispatch({
-                    type: 'UPDATE',
+                    type: "UPDATE",
                     payload: {
-                      show: { login: true, article: false, add: false, edit: false },
+                      show: {
+                        login: true,
+                        article: false,
+                        add: false,
+                        edit: false,
+                      },
                       article: {},
                     },
-                  });
+                  })
                 }}
               >
                 登录
               </Button>
               <Button
-                variant={!state.show.add ? 'outline' : 'default'}
+                variant={!state.show.add ? "outline" : "default"}
                 disabled={state.loading}
                 onClick={() => {
                   dispatch({
-                    type: 'UPDATE',
+                    type: "UPDATE",
                     payload: {
                       article: {},
-                      show: { login: false, article: false, add: true, edit: false },
+                      show: {
+                        login: false,
+                        article: false,
+                        add: true,
+                        edit: false,
+                      },
                     },
-                  });
+                  })
                 }}
               >
                 新增
@@ -92,9 +120,21 @@ function App() {
 
               {state.show.login && <Login />}
 
-              {state.show.add && <AddArticle create={create} data={state.articles} dispatch={dispatch} />}
+              {state.show.add && (
+                <AddArticle
+                  create={create}
+                  data={state.articles}
+                  dispatch={dispatch}
+                />
+              )}
 
-              {state.show.edit && <EditArticle {...state.article} save={save} dispatch={dispatch} />}
+              {state.show.edit && (
+                <EditArticle
+                  {...state.article}
+                  save={save}
+                  dispatch={dispatch}
+                />
+              )}
 
               {state.show.article && (
                 <>
@@ -103,35 +143,54 @@ function App() {
                     data={state.articles}
                     onChange={(v) =>
                       dispatch({
-                        type: 'UPDATE',
+                        type: "UPDATE",
                         payload: {
                           article: findNodeById(state.articles, v[0]),
-                          show: { login: false, article: true, add: false, edit: false },
+                          show: {
+                            login: false,
+                            article: true,
+                            add: false,
+                            edit: false,
+                          },
                         },
                       })
                     }
                     onEdit={() => {
                       dispatch({
-                        type: 'UPDATE',
+                        type: "UPDATE",
                         payload: {
-                          show: { login: false, article: false, add: false, edit: true },
+                          show: {
+                            login: false,
+                            article: false,
+                            add: false,
+                            edit: true,
+                          },
                         },
-                      });
+                      })
                     }}
                     onDel={(id: string) => {
-                      del(id, dispatch);
+                      del(id, dispatch)
                     }}
                   />
 
-                  {state.article?.content && <EditorMd type="view" value={state.article?.content} />}
+                  {state.article?.content && (
+                    <EditorMd type="view" value={state.article?.content} />
+                  )}
                 </>
               )}
+
+              {/* <CursorTrail
+                className={`rounded-[24px] h-[55vh] bg-[#6e6e6e]/50`}
+                action={(speed) => {
+                  console.log("------ndzy------", speed, "------ndzy------")
+                }}
+              /> */}
             </main>
           </div>
         </div>
       </SnackbarProvider>
     </ReduxContext.Provider>
-  );
+  )
 }
 
-export default App;
+export default App

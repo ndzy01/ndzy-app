@@ -1,39 +1,42 @@
-import { service } from './lib/utils';
+import { service } from "./lib/utils"
 
 export const query = async (dispatch: any) => {
-  dispatch({ type: 'UPDATE', payload: { loading: true } });
+  dispatch({ type: "UPDATE", payload: { loading: true } })
 
-  const data: any = await service({ url: '/article', method: 'GET' });
+  const data: any = await service({ url: "/article", method: "GET" })
 
-  dispatch({ type: 'UPDATE', payload: { loading: false, articles: data?.data || [] } });
-};
+  dispatch({
+    type: "UPDATE",
+    payload: { loading: false, articles: data?.data || [] },
+  })
+}
 
 export const del = async (id: string, dispatch: any) => {
-  dispatch({ type: 'UPDATE', payload: { loading: true } });
+  dispatch({ type: "UPDATE", payload: { loading: true } })
 
-  await service({ url: `/article/${id}`, method: 'DELETE' });
+  await service({ url: `/article/${id}`, method: "DELETE" })
 
-  dispatch({ type: 'UPDATE', payload: { loading: false, article: {} } });
+  dispatch({ type: "UPDATE", payload: { loading: false, article: {} } })
 
-  query(dispatch);
-};
+  query(dispatch)
+}
 
 export const save = async (id: string, params: any, dispatch: any) => {
-  dispatch({ type: 'UPDATE', payload: { loading: true } });
+  dispatch({ type: "UPDATE", payload: { loading: true } })
 
-  await service({ url: `/article/${id}`, method: 'PATCH', data: params });
+  await service({ url: `/article/${id}`, method: "PATCH", data: params })
 
-  dispatch({ type: 'UPDATE', payload: { loading: false, article: {} } });
+  dispatch({ type: "UPDATE", payload: { loading: false, article: {} } })
 
-  query(dispatch);
-};
+  query(dispatch)
+}
 
 export const create = async (params: any, dispatch: any) => {
-  dispatch({ type: 'UPDATE', payload: { loading: true } });
+  dispatch({ type: "UPDATE", payload: { loading: true } })
 
-  await service({ url: '/article', method: 'POST', data: params });
+  await service({ url: "/article", method: "POST", data: params })
 
-  dispatch({ type: 'UPDATE', payload: { loading: false } });
+  dispatch({ type: "UPDATE", payload: { loading: false } })
 
-  query(dispatch);
-};
+  query(dispatch)
+}

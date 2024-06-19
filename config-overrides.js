@@ -1,44 +1,47 @@
 const {
   override,
   addWebpackAlias,
-  addBundleVisualizer, // 可视化并分析bundle大小
   addWebpackPlugin, // 添加其他webpack插件
   setWebpackOptimizationSplitChunks, // 配置分片策略
-} = require('customize-cra');
-const path = require('path');
-const CompressionPlugin = require('compression-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+} = require("customize-cra")
+const path = require("path")
+const CompressionPlugin = require("compression-webpack-plugin")
 
 module.exports = override(
   addWebpackAlias({
-    ['@components']: path.resolve(__dirname, 'src/components'),
+    ["@components"]: path.resolve(__dirname, "src/components"),
   }),
 
   setWebpackOptimizationSplitChunks({
-    chunks: 'all',
+    chunks: "all",
     cacheGroups: {
       vendor: {
-        name: 'chunk-vendors',
+        name: "chunk-vendors",
         test: /[\\/]node_modules[\\/]/,
         priority: 10,
-        chunks: 'initial',
+        chunks: "initial",
       },
       commons: {
-        name: 'chunk-commons',
+        name: "chunk-commons",
         minChunks: 3, // minimum common number
         priority: 5,
         reuseExistingChunk: true,
       },
       lib: {
         test(module) {
-          return module.size() > 52 * 1024 && /node_modules[/\\]/.test(module.nameForCondition() || '');
+          return (
+            module.size() > 52 * 1024 &&
+            /node_modules[/\\]/.test(module.nameForCondition() || "")
+          )
         },
         name(module) {
-          const packageNameArr = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
-          const packageName = packageNameArr ? packageNameArr[1] : '';
+          const packageNameArr = module.context.match(
+            /[\\/]node_modules[\\/](.*?)([\\/]|$)/
+          )
+          const packageName = packageNameArr ? packageNameArr[1] : ""
 
           // npm package names are URL-safe, but some servers don't like @ symbols
-          return `chunk-lib.${packageName.replace('@', '')}`;
+          return `chunk-lib.${packageName.replace("@", "")}`
         },
         priority: 15,
         minChunks: 1,
@@ -51,8 +54,8 @@ module.exports = override(
   addWebpackPlugin(
     // new BundleAnalyzerPlugin(),
     new CompressionPlugin({
-      algorithm: 'gzip',
+      algorithm: "gzip",
       test: /\.(js|css|html|svg)$/,
-    }),
-  ),
-);
+    })
+  )
+)
