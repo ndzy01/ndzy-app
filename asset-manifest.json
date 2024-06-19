@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ndzy-app/static/css/main.450a1f3b.css",
-    "main.js": "/ndzy-app/static/js/main.6a6ca0e2.js",
+    "main.css": "/ndzy-app/static/css/main.8b36153b.css",
+    "main.js": "/ndzy-app/static/js/main.98a27603.js",
     "static/js/3219.0ff51487.chunk.js": "/ndzy-app/static/js/3219.0ff51487.chunk.js",
     "static/js/1696.3a2699df.chunk.js": "/ndzy-app/static/js/1696.3a2699df.chunk.js",
     "static/js/2515.507e5b92.chunk.js": "/ndzy-app/static/js/2515.507e5b92.chunk.js",
@@ -133,7 +133,7 @@
     "static/js/chunk-lib.react-dom.b0b8a12c.js",
     "static/css/chunk-vendors.6ff79842.css",
     "static/js/chunk-vendors.a95e5b13.js",
-    "static/css/main.450a1f3b.css",
-    "static/js/main.6a6ca0e2.js"
+    "static/css/main.8b36153b.css",
+    "static/js/main.98a27603.js"
   ]
 }
