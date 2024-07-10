@@ -1,5 +1,4 @@
 import { useContext } from "react"
-import { enqueueSnackbar } from "notistack"
 
 import { ReduxContext } from "../store"
 import ArticleSelect from "./article-select"
@@ -28,10 +27,7 @@ const AddArticle = ({ create, data, dispatch }: any) => {
             initialValues={{ title: "", content: "", order: "" }}
             onSubmit={(v) => {
               if (!v.content) {
-                enqueueSnackbar("内容不能为空", {
-                  variant: "error",
-                  anchorOrigin: { vertical: "top", horizontal: "center" },
-                })
+                alert("内容不能为空")
 
                 return
               }

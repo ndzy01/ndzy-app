@@ -43,8 +43,6 @@ const ArticleTree = ({
     }
   }, [value])
 
-  console.log("------ndzy------", data, "------ndzy------")
-
   return (
     <Accordion
       type="single"
