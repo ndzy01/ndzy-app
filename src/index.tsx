@@ -1,5 +1,6 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
+import 'ndzy-utils/dist/style.css'
 
 import "./globals.css"
 
