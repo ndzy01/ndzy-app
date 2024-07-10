@@ -4,8 +4,8 @@ import { ReduxContext } from "../store"
 import ArticleSelect from "./article-select"
 import { EditorMd } from "./editor-md"
 import { Form, FormItem } from "./form"
-import { Button } from "./ui/button"
-import { Input } from "./ui/input"
+import { Button } from "ndzy-utils"
+import { Input } from "ndzy-utils"
 
 const AddArticle = ({ create, data, dispatch }: any) => {
   const { state } = useContext(ReduxContext)

@@ -9,8 +9,8 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "./ui/accordion"
-import { Button } from "./ui/button"
+} from "ndzy-utils"
+import { Button } from "ndzy-utils"
 
 const ArticleTree = ({
   data,
