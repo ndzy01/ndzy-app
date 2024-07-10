@@ -74,6 +74,7 @@ function App() {
             >
               登录
             </Button>
+
             <Button
               variant={!state.show.add ? "outline" : "default"}
               disabled={state.loading}
@@ -95,11 +96,12 @@ function App() {
               新增
             </Button>
           </header>
+
           <main className="mt-16 p-4">
             {state.loading && (
               <div className="w-full h-full flex items-center justify-center">
                 <svg
-                  className="m-4 h-4 w-4 animate-spin"
+                  className="m-4 h-8 w-8 animate-spin"
                   viewBox="0 0 15 15"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
