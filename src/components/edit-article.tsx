@@ -3,8 +3,7 @@ import { useContext } from "react"
 import { ReduxContext } from "../store"
 import { EditorMd } from "./editor-md"
 import { Form, FormItem } from "./form"
-import { Button } from "ndzy-utils"
-import { Input } from "ndzy-utils"
+import { Button, Input } from "ndzy-utils"
 
 const EditArticle = ({ order, title, content, id, save, dispatch }: any) => {
   const { state } = useContext(ReduxContext)

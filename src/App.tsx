@@ -1,31 +1,19 @@
 import { useEffect, useReducer } from "react"
 
 import AddArticle from "./components/add-article"
-import ArticleTree from "./components/article-select"
 import EditArticle from "./components/edit-article"
 import { EditorMd } from "./components/editor-md"
-import { Button } from "ndzy-utils"
+import { Button, ArticleTree } from "ndzy-utils"
 import { findNodeById } from "./lib/utils"
 import Login from "./Login"
 import { create, del, query, save } from "./service"
 import { initialState, reducer, ReduxContext } from "./store"
-
-const setFontSize = () => {
-  var width = document.documentElement.clientWidth // 设置根元素字体大小。此时为宽的10等分 eg 设计稿是 600 600/16 = 37.5
-  if (width < 750) document.documentElement.style.fontSize = width / 37.5 + "px"
-}
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   useEffect(() => {
     query(dispatch)
-  }, [])
-
-  // 设计稿尺寸问题处理
-  useEffect(() => {
-    setFontSize()
-    window.addEventListener("resize", setFontSize)
   }, [])
 
   return (
@@ -136,7 +124,7 @@ function App() {
                 <ArticleTree
                   placeholder="请选择文章"
                   data={state.articles}
-                  onChange={(v) =>
+                  onChange={(v: string[]) =>
                     dispatch({
                       type: "UPDATE",
                       payload: {

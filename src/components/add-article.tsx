@@ -1,20 +1,18 @@
 import { useContext } from "react"
 
 import { ReduxContext } from "../store"
-import ArticleSelect from "./article-select"
+import { ArticleTree, Button, Input } from "ndzy-utils"
 import { EditorMd } from "./editor-md"
 import { Form, FormItem } from "./form"
-import { Button } from "ndzy-utils"
-import { Input } from "ndzy-utils"
 
 const AddArticle = ({ create, data, dispatch }: any) => {
   const { state } = useContext(ReduxContext)
   const ArticleSelectFormItem = (props: any) => {
     return (
-      <ArticleSelect
+      <ArticleTree
         {...props}
         value={props.value}
-        onChange={(v) => props.onChange(v)}
+        onChange={(v: string[]) => props.onChange(v)}
       />
     )
   }
