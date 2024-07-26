@@ -16,7 +16,7 @@
     "gsap": "^3.12.5",
     "lucide-react": "^0.378.0",
     "md-editor-rt": "^4.15.0",
-    "ndzy-utils": "^0.0.18",
+    "ndzy-utils": "^0.0.20",
     "rc-tree": "^5.8.7",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

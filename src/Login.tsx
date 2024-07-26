@@ -40,6 +40,8 @@ const Login = () => {
                         },
                       },
                     })
+
+                    window.location.reload()
                   }
                 }
               )
